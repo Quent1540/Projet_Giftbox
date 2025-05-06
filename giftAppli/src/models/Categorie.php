@@ -1,6 +1,5 @@
 <?php
-namespace gift\appli\src\models;
-
+namespace giftAppli\src\models;
 use Illuminate\Database\Eloquent\Model;
 
 class Categorie extends Model {
