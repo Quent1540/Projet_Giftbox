@@ -11,4 +11,9 @@ class Prestation extends Model {
     public $keyType = 'string';
 
     protected $fillable = ['id', 'libelle', 'url', 'description', 'tarif', 'unité'];
+
+    //Une prestation appartient à une catégorie
+    public function categorie(): BelongsTo {
+        return $this->belongsTo(Categorie::class, 'id');
+    }
 }
