@@ -53,7 +53,7 @@ try {
     echo "Aucune prestation trouvée avec l'ID : " . $id;
 }
 
-//affiche la catégorie 3 avec la liste des prestations associées.
+//Affiche la catégorie 3 avec la liste des prestations associées
 echo "<h1>Afficher la catégorie 3 avec la liste des prestations associées</h1>";
 $id = 3;
 try {
