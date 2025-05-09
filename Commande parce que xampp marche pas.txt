@@ -1,0 +1,3 @@
+Se mettre dans le répertoire du projet
+php -S 0.0.0.0:8000 -t .\giftAppli\public\
+Sur le navigateur : http://localhost:8000/categories
