@@ -7,6 +7,6 @@ use gift\appli\actions\GetPrestationsParCategorieAction;
 
 return function(App $app): App {
     $app->get('/categories', GetCategoriesAction::class);
-    $app->get('/categories/1/prestations', GetPrestationsParCategorieAction::class);
+    $app->get('/categories/{id}/prestations', GetPrestationsParCategorieAction::class);
     return $app;
 };

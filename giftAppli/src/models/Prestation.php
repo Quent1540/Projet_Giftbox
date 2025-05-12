@@ -10,10 +10,10 @@ class Prestation extends Model {
     public $incrementing = false;
     public $keyType = 'string';
 
-    protected $fillable = ['id', 'libelle', 'url', 'description', 'tarif', 'unité'];
+    protected $fillable = ['id', 'libelle', 'url', 'description', 'tarif', 'unite', 'img', 'cat_id'];
 
     //Une prestation appartient à une catégorie
     public function categorie(): BelongsTo {
-        return $this->belongsTo(Categorie::class, 'id');
+        return $this->belongsTo(Categorie::class, 'cat_id');
     }
 }

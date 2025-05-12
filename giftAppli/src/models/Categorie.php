@@ -12,6 +12,6 @@ class Categorie extends Model {
 
     //Une catégorie a plusieurs prestations
     public function prestations(): HasMany {
-        return $this->hasMany(Prestation::class, 'id');
+        return $this->hasMany(Prestation::class, 'cat_id');
     }
 }
