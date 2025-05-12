@@ -12,8 +12,8 @@ class GetCategoriesAction {
         $categories = Categorie::all();
         $html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Catégories</title></head><body>";
         $html .= "<h1>Catégories disponibles</h1><ul>";
-        foreach ($categories as $cat) {
-            $html .= "<li>ID: {$cat->id} - Libellé: {$cat->libelle} - Description: {$cat->description}</li>";
+        foreach ($categories as $categorie) {
+            $html .= "<li><a href=\"/categorie/{$categorie->id}\">ID: {$categorie->id} - Libellé: {$categorie->libelle}</a></li>";
         }
         $html .= "</ul></body></html>";
         $response->getBody()->write($html);
