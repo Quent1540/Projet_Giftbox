@@ -1,21 +1,7 @@
 <?php
 declare(strict_types=1);
-//Chargement de l'autoloader
-require_once __DIR__. '/../src/vendor/autoload.php';
-require_once __DIR__ . '/../src/utils/Eloquent.php';
-\gift\appli\utils\Eloquent::init(__DIR__ . '/../src/conf/gift.db.conf.ini');
 
-use Slim\Factory\AppFactory;
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
+require_once __DIR__ . '/../src/vendor/autoload.php';
 
-//Création de l'application
-$app = AppFactory::create();
-//$app->setBasePath('/Projet_Giftbox/giftAppli/public');
-$app->addRoutingMiddleware();
-$app->addErrorMiddleware(true, true, true);
-
-//Déclaration des routes
-$app = (require_once __DIR__ . '/../src/conf/routes.php')($app);
-
+$app = require_once __DIR__ . '/../src/conf/bootstrap.php';
 $app->run();
