@@ -14,7 +14,7 @@ class GetPrestationsParCategorieAction {
             $categorie = Categorie::with('prestations')->findOrFail($id);
             $html = "<h1>{$categorie->libelle} — Prestations</h1><ul>";
             foreach ($categorie->prestations as $p) {
-                $html .= "<li>{$p->libelle} - {$p->description} - {$p->tarif} € / {$p->unité}</li>";
+                $html .= "<li>{$p->libelle} - {$p->description} - {$p->tarif} € / {$p->unite}</li>";
             }
             $html .= "</ul>";
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
