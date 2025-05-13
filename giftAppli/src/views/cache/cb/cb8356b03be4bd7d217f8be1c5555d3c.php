@@ -56,7 +56,7 @@ class __TwigTemplate_cfd09615e212c94ba212ae7ef42d61a3 extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["categ"]) {
             // line 12
             yield "            <li>
-                <a href=\"/categories/";
+                <a href=\"/categorie/";
             // line 13
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["categ"], "id", [], "any", false, false, false, 13), "html", null, true);
             yield "\">
