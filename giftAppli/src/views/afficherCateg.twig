@@ -1,0 +1,20 @@
+<!-- templates/categories.twig -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Catégories</title>
+</head>
+<body>
+    <h1>Catégories disponibles</h1>
+    <ul>
+        {% for categ in categories %}
+            <li>
+                <a href="/categorie/{{ categ.id }}">
+                    ID: {{ categ.id }} - Libellé: {{ categ.libelle }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
