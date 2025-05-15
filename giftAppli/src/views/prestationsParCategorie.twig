@@ -14,8 +14,11 @@
                     <strong>{{ prestation.libelle }}</strong><br>
                     {{ prestation.description }}<br>
                     {{ prestation.tarif }} € / {{ prestation.unite }}
+                    <a href="/prestation?id={{ prestation.id }}">Détails</a>
                 </li>
             {% endfor %}
+            <br>
+            <a href="/categorie/{{ categorie.id }}">Retour à la catégorie</a>
         </ul>
     {% else %}
         <p>Aucune prestation trouvée pour cette catégorie.</p>
