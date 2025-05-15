@@ -14,7 +14,7 @@ class GetCategorieParIdAction {
         try {
             $categorie = Categorie::findOrFail($id);
             $view = Twig::fromRequest($request);
-            return $view->render($response, 'afficherCategorieParId.twig', ['categorie' => $categorie]);
+            return $view->render($response, 'categorieParId.twig', ['categorie' => $categorie]);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             $html = "<p>Aucune catégorie trouvée avec l'ID : $id</p>";
         }

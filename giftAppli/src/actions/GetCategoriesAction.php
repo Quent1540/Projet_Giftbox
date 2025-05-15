@@ -13,7 +13,7 @@ class GetCategoriesAction {
         try{
         $categories = Categorie::all();
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'afficherCateg.twig', [
+        return $view->render($response, 'categories.twig', [
             'categories' => $categories,
         ]);}
         catch(\Exception $e){

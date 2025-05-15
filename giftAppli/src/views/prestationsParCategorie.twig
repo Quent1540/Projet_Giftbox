@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prestations de la catégorie</title>
+</head>
+<body>
+    <h1>{{ categorie.libelle }} — Prestations</h1>
+
+    {% if categorie.prestations is not empty %}
+        <ul>
+            {% for prestation in categorie.prestations %}
+                <li>
+                    <strong>{{ prestation.libelle }}</strong><br>
+                    {{ prestation.description }}<br>
+                    {{ prestation.tarif }} € / {{ prestation.unite }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune prestation trouvée pour cette catégorie.</p>
+    {% endif %}
+</body>
+</html>
