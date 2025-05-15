@@ -15,10 +15,12 @@ class GetCategorieParIdAction {
             $categorie = Categorie::findOrFail($id);
             $view = Twig::fromRequest($request);
             return $view->render($response, 'categorieParId.twig', ['categorie' => $categorie]);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            $html = "<p>Aucune catégorie trouvée avec l'ID : $id</p>";
+        } catch(\Illuminate\Database\QueryException $e) {
+            //Erreurs liées à la base de données
+            throw new \Slim\Exception\HttpInternalServerErrorException($request, "Une erreur est survenue lors de l'accès à la base de données.");
+        } catch(\Exception $e) {
+            //Autres exceptions
+            throw new \Slim\Exception\HttpInternalServerErrorException($request, "Une erreur inattendue s'est produite.");
         }
-        $response->getBody()->write($html);
-        return $response;
     }
 }
