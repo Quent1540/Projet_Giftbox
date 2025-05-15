@@ -17,6 +17,8 @@ class GetCategoriesAction {
             'categories' => $categories,
         ]);}
         catch(\Exception $e){
+            //gerer queryException
+            //throw http internal excptionerror
             $response->getBody()->write("Erreur lors de la récupération des catégories : " . $e->getMessage());
             return $response->withStatus(500);
         }

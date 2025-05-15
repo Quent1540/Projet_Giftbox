@@ -14,7 +14,7 @@ $app = AppFactory::create();
 
 //Twig
 $twig = \Slim\Views\Twig::create(__DIR__ . '/../views', [
-    'cache' => __DIR__ . '/../views/cache',
+    'cache' => false, //__DIR__ . '/../views/cache',
     'auto_reload' => true
 ]);
 $app->add(\Slim\Views\TwigMiddleware::create($app, $twig)) ;
