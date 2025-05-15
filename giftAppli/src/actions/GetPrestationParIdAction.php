@@ -22,9 +22,12 @@ class GetPrestationParIdAction {
             return $view->render($response, 'prestationParId.twig', [
                 'prestation' => $prestation
             ]);
-        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            $response->getBody()->write("<p>Aucune prestation trouvée avec l'ID : $id</p>");
-            return $response->withStatus(404);
+        } catch(\Illuminate\Database\QueryException $e) {
+            //Erreurs liées à la base de données
+            throw new \Slim\Exception\HttpInternalServerErrorException($request, "Erreur lors de la récupération de la prestation.");
+        } catch(\Exception $e) {
+            //Autres exceptions
+            throw new \Slim\Exception\HttpInternalServerErrorException($request, "Une erreur inattendue s'est produite.");
         }
     }
 }

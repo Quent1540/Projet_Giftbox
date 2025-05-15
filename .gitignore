@@ -4,5 +4,5 @@ vendor/
 Thumbs.db
 .idea/
 .vscode/
-.cache/
+giftAppli/src/views/cache/
 composer.lock

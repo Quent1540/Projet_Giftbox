@@ -16,11 +16,12 @@ class GetCategoriesAction {
         return $view->render($response, 'categories.twig', [
             'categories' => $categories,
         ]);}
-        catch(\Exception $e){
-            $response->getBody()->write("Erreur lors de la récupération des catégories : " . $e->getMessage());
-            return $response->withStatus(500);
+        catch(\Illuminate\Database\QueryException $e) {
+            //Erreurs liées à la base de données
+            throw new \Slim\Exception\HttpInternalServerErrorException($request, "Erreur lors de la récupération des catégories.");
+        } catch(\Exception $e) {
+            //Autres exceptions
+            throw new \Slim\Exception\HttpInternalServerErrorException($request, "Une erreur inattendue s'est produite.");
         }
-        $response->getBody()->write($html);
-        return $response;
     }
 }
