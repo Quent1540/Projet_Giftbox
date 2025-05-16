@@ -11,6 +11,8 @@
                     ID: {{ categ.id }} - Libellé: {{ categ.libelle }}
                 </a>
             </li>
+        {% else %}
+            <li>Aucune catégorie trouvée.</li>
         {% endfor %}
     </ul>
 {% endblock %}

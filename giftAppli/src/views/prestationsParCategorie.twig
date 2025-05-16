@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Prestations de la catégorie</title>
-</head>
-<body>
+{% extends "main.twig" %}
+
+{% block title %}Prestations de la catégorie{% endblock %}
+
+{% block content %}
     <h1>{{ categorie.libelle }} — Prestations</h1>
 
     {% if categorie.prestations is not empty %}
@@ -17,11 +15,10 @@
                     <a href="/prestation?id={{ prestation.id }}">Détails</a>
                 </li>
             {% endfor %}
-            <br>
-            <a href="/categorie/{{ categorie.id }}">Retour à la catégorie</a>
         </ul>
+        <br>
+        <a href="/categorie/{{ categorie.id }}">Retour à la catégorie</a>
     {% else %}
         <p>Aucune prestation trouvée pour cette catégorie.</p>
     {% endif %}
-</body>
-</html>
+{% endblock %}

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Détail Prestation</title>
-</head>
-<body>
+{% extends "main.twig" %}
+
+{% block title %}Détail Prestation{% endblock %}
+
+{% block content %}
     <h1>Détail de la prestation</h1>
     <p><strong>ID :</strong> {{ prestation.id }}</p>
     <p><strong>Libellé :</strong> {{ prestation.libelle }}</p>
@@ -12,5 +10,4 @@
     <p><strong>Tarif :</strong> {{ prestation.tarif }} € / {{ prestation.unite }}</p>
 
     <a href="/categories/{{ prestation.cat_id }}/prestations">Retour à la liste des prestations</a>
-</body>
-</html>
+{% endblock %}
