@@ -1,11 +1,8 @@
-<!-- templates/categories.twig -->
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Catégories</title>
-</head>
-<body>
+{% extends "main.twig" %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block content %}
     <h1>Catégories disponibles</h1>
     <ul>
         {% for categ in categories %}
@@ -16,5 +13,4 @@
             </li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock %}
