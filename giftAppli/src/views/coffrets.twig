@@ -10,8 +10,11 @@
             {% for coffret in coffrets %}
                 <li>
                     <a href="/coffret/{{ coffret.id }}">{{ coffret.nom }}</a>
+                    <a href="/coffret/{{ coffret.id }}">Voir le détail</a>
                 </li>
             {% endfor %}
         </ul>
     {% endfor %}
+    <br>
+    <a href="/">Retour à la page d'accueil</a>
 {% endblock %}
