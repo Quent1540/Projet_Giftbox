@@ -1,0 +1,17 @@
+{% extends "main.twig" %}
+
+{% block title %}Coffrets types{% endblock %}
+
+{% block content %}
+    <h1>Coffrets types par thème</h1>
+    {% for theme, coffrets in coffrets_par_theme %}
+        <h2>{{ theme }}</h2>
+        <ul>
+            {% for coffret in coffrets %}
+                <li>
+                    <a href="/coffret/{{ coffret.id }}">{{ coffret.nom }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}

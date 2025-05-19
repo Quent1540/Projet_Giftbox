@@ -16,5 +16,7 @@ return function(App $app): App {
         $view = \Slim\Views\Twig::fromRequest($request);
         return $view->render($response, 'home.twig');
     });
+    $app->get('/coffrets', \gift\appli\actions\GetCoffretsAction::class);
+    $app->get('/coffret/{id}', \gift\appli\actions\GetCoffretDetailAction::class);
     return $app;
 };

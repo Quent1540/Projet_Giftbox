@@ -1,0 +1,15 @@
+{% extends "main.twig" %}
+
+{% block title %}Détail Coffret{% endblock %}
+
+{% block content %}
+    <h1>{{ coffret.nom }}</h1>
+    <p>{{ coffret.description }}</p>
+    <h2>Prestations incluses :</h2>
+    <ul>
+        {% for prestation in prestations %}
+            <li>{{ prestation.libelle }} ({{ prestation.tarif }} €)</li>
+        {% endfor %}
+    </ul>
+    <a href="/coffrets">Retour à la liste des coffrets</a>
+{% endblock %}
