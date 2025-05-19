@@ -11,7 +11,6 @@ class GetCoffretDetailAction {
         $id = $args['id'];
         $coffret = CoffretType::with(['theme', 'prestations'])->find($id);
         if (!$coffret) {
-            // Gère le cas où le coffret n’existe pas
             $response->getBody()->write('Coffret non trouvé');
             return $response->withStatus(404);
         }
