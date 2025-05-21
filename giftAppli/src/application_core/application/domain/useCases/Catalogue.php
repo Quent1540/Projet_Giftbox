@@ -9,9 +9,10 @@ use gift\appli\application_core\application\domain\entities\CoffretType;
 class Catalogue implements CatalogueInterface {
     public function getCategories(): array {
         try {
-            return Categorie::all()->toArray();
+            $result = Categorie::all();
+            return $result->toArray();
         } catch (\Exception $e) {
-            throw new CatalogueException('Erreur lors de la récupération des catégories');
+            throw new CatalogueException('Erreur lors de la récupération des catégories : ' . $e->getMessage());
         }
     }
 
