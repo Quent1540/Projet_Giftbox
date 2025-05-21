@@ -1,19 +1,26 @@
 <?php
 declare(strict_types=1);
 
+use gift\appli\infrastructure\Eloquent;
 use Slim\Factory\AppFactory;
-use gift\appli\utils\Eloquent;
 
 //Chargement d'Eloquent ORM
-require_once __DIR__ . '/../utils/Eloquent.php';
+require_once __DIR__ . '/../infrastructure/Eloquent.php';
 Eloquent::init(__DIR__ . '/gift.db.conf.ini');
 
 //Création de l'application
 $app = AppFactory::create();
 
+//Enregistrement du service Catalogue dans le conteneur DI
+$app->getContainer()->set(
+    \gift\appli\application_core\application\domain\useCases\CatalogueInterface::class,
+    function() {
+        return new \gift\appli\application_core\application\domain\useCases\Catalogue();
+    }
+);
 
 //Twig
-$twig = \Slim\Views\Twig::create(__DIR__ . '/../views', [
+$twig = \Slim\Views\Twig::create(__DIR__ . '/../application_core/application/views', [
     'cache' => false, //__DIR__ . '/../views/cache',
     'auto_reload' => true
 ]);

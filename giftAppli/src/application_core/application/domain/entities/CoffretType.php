@@ -1,5 +1,5 @@
 <?php
-namespace gift\appli\models;
+namespace gift\appli\application_core\application\domain\entities;
 
 use Illuminate\Database\Eloquent\Model;
 
