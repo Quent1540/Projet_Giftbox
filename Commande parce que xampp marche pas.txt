@@ -1,7 +1,0 @@
-Se mettre dans le répertoire du projet
-php -S 0.0.0.0:8000 -t .\giftAppli\public\
-Sur le navigateur :
-http://localhost:8000/categories
-http://localhost:8000/categorie/4
-http://localhost:8000/prestation?id=4cca8b8e-0244-499b-8247-d217a4bc542d
-http://localhost:8000/categories/4/prestations
