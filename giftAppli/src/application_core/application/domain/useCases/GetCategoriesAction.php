@@ -19,7 +19,7 @@ class GetCategoriesAction {
             $view = Twig::fromRequest($request);
             return $view->render($response, 'categories.twig', ['categories' => $categories]);
         } catch (CatalogueException $e) {
-            throw new HttpInternalServerErrorException($request, $e->getMessage());
+            throw new \Slim\Exception\HttpInternalServerErrorException($request, $e->getMessage());
         }
     }
 }

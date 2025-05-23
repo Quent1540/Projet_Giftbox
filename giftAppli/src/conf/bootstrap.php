@@ -1,8 +1,13 @@
 <?php
 declare(strict_types=1);
-
-use gift\appli\infrastructure\Eloquent;
+require_once __DIR__ . '/../vendor/autoload.php';
+use DI\Container;
 use Slim\Factory\AppFactory;
+use gift\appli\infrastructure\Eloquent;
+
+//Création du conteneur
+$container = new Container();
+AppFactory::setContainer($container);
 
 //Chargement d'Eloquent ORM
 require_once __DIR__ . '/../infrastructure/Eloquent.php';
