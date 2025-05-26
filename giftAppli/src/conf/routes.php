@@ -10,7 +10,7 @@ use Slim\App;
 return function(App $app): App {
     $app->get('/categories', GetCategoriesAction::class);
     $app->get('/categorie/{id}', GetCategorieParIdAction::class);
-    $app->get('/prestation', GetPrestationParIdAction::class);
+    $app->get('/prestation/{id}', GetPrestationParIdAction::class);
     $app->get('/categories/{id}/prestations', GetPrestationsParCategorieAction::class);
     $app->get('/', function ($request, $response, $args) {
         $view = \Slim\Views\Twig::fromRequest($request);

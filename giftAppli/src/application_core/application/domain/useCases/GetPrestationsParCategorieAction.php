@@ -16,9 +16,10 @@ class GetPrestationsParCategorieAction {
     public function __invoke(Request $request, Response $response, array $args): Response {
         try {
             $id = (int) $args['id'];
-            $prestations = $this->catalogue->getPrestationsByCategorie($id);
+            $categorie = $this->catalogue->getCategorieById($id);
+            $categorie['prestations'] = $this->catalogue->getPrestationsByCategorie($id);
             $view = Twig::fromRequest($request);
-            return $view->render($response, 'prestationsParCategorie.twig', ['prestations' => $prestations]);
+            return $view->render($response, 'prestationsParCategorie.twig', ['categorie' => $categorie]);
         } catch (CatalogueException $e) {
             throw new HttpNotFoundException($request, $e->getMessage());
         }

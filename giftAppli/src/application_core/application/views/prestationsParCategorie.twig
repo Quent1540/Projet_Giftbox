@@ -12,7 +12,7 @@
                     <strong>{{ prestation.libelle }}</strong><br>
                     {{ prestation.description }}<br>
                     {{ prestation.tarif }} € / {{ prestation.unite }}
-                    <a href="/prestation?id={{ prestation.id }}">Détails</a>
+                    <a href="/prestation/{{ prestation.id }}">Détails</a>
                 </li>
             {% endfor %}
         </ul>

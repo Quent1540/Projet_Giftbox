@@ -5,6 +5,7 @@ use gift\appli\application_core\application\domain\entities\Categorie;
 use gift\appli\application_core\application\domain\entities\Prestation;
 use gift\appli\application_core\application\domain\entities\Theme;
 use gift\appli\application_core\application\domain\entities\CoffretType;
+use Illuminate\Database\QueryException;
 
 class Catalogue implements CatalogueInterface {
     public function getCategories(): array {
@@ -34,9 +35,10 @@ class Catalogue implements CatalogueInterface {
 
     public function getPrestationsByCategorie(int $categ_id): array {
         try {
-            return Prestation::where('categorie_id', $categ_id)->get()->toArray();
-        } catch (\Exception $e) {
-            throw new CatalogueException('Erreur lors de la récupération des prestations');
+            return Prestation::where('cat_id', $categ_id)->get()->toArray();
+        } catch (QueryException $e) {
+            throw new CatalogueException('Erreur lors de la récupération des prestations'.
+                ' : ' . $e->getMessage());
         }
     }
 
