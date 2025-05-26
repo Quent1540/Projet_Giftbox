@@ -4,13 +4,12 @@
 
 {% block content %}
     <h1>Coffrets types par thème</h1>
-    {% for theme, coffrets in coffrets_par_theme %}
-        <h2>{{ theme }}</h2>
+    {% for theme in coffrets %}
+        <h2>{{ theme.libelle }}</h2>
         <ul>
-            {% for coffret in coffrets %}
+            {% for coffret in theme.coffrets %}
                 <li>
-                    <a href="/coffret/{{ coffret.id }}">{{ coffret.nom }}</a>
-                    <a href="/coffret/{{ coffret.id }}">Voir le détail</a>
+                    <a href="/coffret/{{ coffret.id }}">{{ coffret.libelle }}</a>
                 </li>
             {% endfor %}
         </ul>

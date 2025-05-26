@@ -44,9 +44,13 @@ class Catalogue implements CatalogueInterface {
 
     public function getThemesCoffrets(): array {
         try {
-            return Theme::all()->toArray();
+            $themes = Theme::all()->toArray();
+            foreach ($themes as &$theme) {
+                $theme['coffrets'] = CoffretType::where('theme_id', $theme['id'])->get()->toArray();
+            }
+            return $themes;
         } catch (\Exception $e) {
-            throw new CatalogueException('Erreur lors de la récupération des thèmes');
+            throw new CatalogueException('Erreur lors de la récupération des thèmes et coffrets : ' . $e->getMessage());
         }
     }
 
@@ -55,6 +59,17 @@ class Catalogue implements CatalogueInterface {
             return CoffretType::findOrFail($id)->toArray();
         } catch (\Exception $e) {
             throw new CatalogueException('Coffret introuvable');
+        }
+    }
+
+    public function getPrestationsByCoffret(int $id): array {
+        try {
+            return Prestation::join('coffret2presta', 'prestation.id', '=', 'coffret2presta.presta_id')
+                ->where('coffret2presta.coffret_id', $id)
+                ->get(['prestation.id', 'prestation.libelle', 'prestation.tarif'])
+                ->toArray();
+        } catch (\Exception $e) {
+            throw new CatalogueException('Erreur lors de la récupération des prestations : ' . $e->getMessage());
         }
     }
 }
