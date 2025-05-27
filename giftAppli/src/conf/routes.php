@@ -18,5 +18,6 @@ return function(App $app): App {
     });
     $app->get('/coffrets', \gift\appli\application_core\application\domain\useCases\GetCoffretsAction::class);
     $app->get('/coffret/{id}', \gift\appli\application_core\application\domain\useCases\GetCoffretDetailAction::class);
+    $app->map(['GET', 'POST'], '/box/nouvelle', \gift\appli\application_core\application\domain\useCases\CreateBoxAction::class);
     return $app;
 };

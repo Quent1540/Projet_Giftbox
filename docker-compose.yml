@@ -34,6 +34,8 @@ services:
       gift.net:
         aliases:
           - sql.db
+    volumes:
+      - ./db_data:/var/lib/mysql
 
   adminer:
     image: adminer
