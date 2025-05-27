@@ -17,6 +17,15 @@ class Catalogue implements CatalogueInterface {
         }
     }
 
+    public function getPrestations(): array {
+        try {
+            $result = Prestation::all();
+            return $result->toArray();
+        } catch (QueryException $e) {
+            throw new CatalogueException('Erreur lors de la récupération des prestations : ' . $e->getMessage());
+        }
+    }
+
     public function getCategorieById(int $id): array {
         try {
             return Categorie::findOrFail($id)->toArray();
