@@ -46,6 +46,11 @@ class CreateBoxAction {
             $id, $token, $libelle, $description, $montant, $kdo, $message_kdo, $statut
         ]);
 
+        if (session_status() !== PHP_SESSION_ACTIVE) {
+            session_start();
+        }
+        $_SESSION['box_id'] = $id;
+
         //Ajout de l'id la box dans la session
         return $view->render($response, 'createBox.twig', [
             'success' => true,

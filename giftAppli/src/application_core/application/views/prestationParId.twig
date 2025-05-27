@@ -8,8 +8,12 @@
     <p><strong>Libellé :</strong> {{ prestation.libelle }}</p>
     <p><strong>Description :</strong> {{ prestation.description }}</p>
     <p><strong>Tarif :</strong> {{ prestation.tarif }} € / {{ prestation.unite }}</p>
-
-    <a href="/categories/{{ prestation.cat_id }}/prestations">Retour à la liste des prestations</a>
-    <br><br>
-        <a href="/">Retour à la page d'accueil</a>
+    <br>
+    <form method="post" action="/box/prestation/add">
+        <input type="hidden" name="presta_id" value="{{ prestation.id }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button type="submit">Ajouter à la box</button>
+    </form>
+    <br>
+    <a href="/">Retour à la page d'accueil</a>
 {% endblock %}

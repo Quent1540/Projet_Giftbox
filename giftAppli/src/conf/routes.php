@@ -10,6 +10,7 @@ use Slim\App;
 return function(App $app): App {
     $app->get('/categories', GetCategoriesAction::class);
     $app->get('/categorie/{id}', GetCategorieParIdAction::class);
+    $app->get('/prestations', \gift\appli\application_core\application\domain\useCases\GetPrestationsAction::class);
     $app->get('/prestation/{id}', GetPrestationParIdAction::class);
     $app->get('/categories/{id}/prestations', GetPrestationsParCategorieAction::class);
     $app->get('/', function ($request, $response, $args) {
@@ -20,5 +21,6 @@ return function(App $app): App {
     $app->get('/coffret/{id}', \gift\appli\application_core\application\domain\useCases\GetCoffretDetailAction::class);
     $app->map(['GET', 'POST'], '/box/create', \gift\appli\application_core\application\domain\useCases\CreateBoxAction::class);
     $app->get('/coffret/{coffret_id}/prestation/{id}', \gift\appli\application_core\application\domain\useCases\GetPrestationCoffretAction::class);
+    $app->post('/box/prestation/add', \gift\appli\application_core\application\domain\useCases\AddPrestationBoxAction::class);
     return $app;
 };
