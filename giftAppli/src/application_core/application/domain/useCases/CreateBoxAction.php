@@ -32,7 +32,7 @@ class CreateBoxAction {
         $kdo = isset($data['kdo']) ? 1 : 0;
         $message_kdo = $data['message_kdo'] ?? '';
         $montant = $data['montant'] ?? 0;
-        $statut = $data['statut'] ?? 0;
+        $statut = 1;
 
         //Appel du service de création de box vide
         $pdo = new \PDO('mysql:host=sql;dbname=gift', 'root', 'root');
