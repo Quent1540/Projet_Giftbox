@@ -4,7 +4,6 @@ namespace gift\appli\application_core\application\domain\useCases;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
-use Slim\Exception\HttpInternalServerErrorException;
 
 class GetCategoriesAction {
     private CatalogueInterface $catalogue;
