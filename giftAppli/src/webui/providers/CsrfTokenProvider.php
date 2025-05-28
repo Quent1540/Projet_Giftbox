@@ -1,5 +1,5 @@
 <?php
-namespace gift\appli\application_core\application\providers;
+namespace gift\appli\webui\providers;
 
 class CsrfTokenProvider{
     private const SESSION_KEY = '_csrf_token';

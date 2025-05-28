@@ -1,12 +1,13 @@
 <?php
-namespace gift\appli\application_core\application\domain\useCases;
+namespace gift\appli\webui\actions;
 
+use gift\appli\application_core\application\exceptions\CatalogueException;
+use gift\appli\application_core\application\useCases\CatalogueInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
-use Slim\Exception\HttpNotFoundException;
 
-class GetCategorieParIdAction {
+class GetCategoriesAction {
     private CatalogueInterface $catalogue;
 
     public function __construct(CatalogueInterface $catalogue) {
@@ -15,12 +16,11 @@ class GetCategorieParIdAction {
 
     public function __invoke(Request $request, Response $response, array $args): Response {
         try {
-            $id = (int) $args['id'];
-            $categorie = $this->catalogue->getCategorieById($id);
+            $categories = $this->catalogue->getCategories();
             $view = Twig::fromRequest($request);
-            return $view->render($response, 'categorieParId.twig', ['categorie' => $categorie]);
+            return $view->render($response, 'categories.twig', ['categories' => $categories]);
         } catch (CatalogueException $e) {
-            throw new HttpNotFoundException($request, $e->getMessage());
+            throw new \Slim\Exception\HttpInternalServerErrorException($request, $e->getMessage());
         }
     }
 }

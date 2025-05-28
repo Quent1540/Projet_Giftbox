@@ -1,6 +1,8 @@
 <?php
-namespace gift\appli\application_core\application\domain\useCases;
+namespace gift\appli\webui\actions;
 
+use gift\appli\application_core\application\exceptions\CatalogueException;
+use gift\appli\application_core\application\useCases\CatalogueInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;

@@ -1,12 +1,14 @@
 <?php
-namespace gift\appli\application_core\application\domain\useCases;
+namespace gift\appli\webui\actions;
 
+use gift\appli\application_core\application\exceptions\CatalogueException;
+use gift\appli\application_core\application\useCases\CatalogueInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 use Slim\Exception\HttpNotFoundException;
 
-class GetPrestationCoffretAction {
+class GetCategorieParIdAction {
     private CatalogueInterface $catalogue;
 
     public function __construct(CatalogueInterface $catalogue) {
@@ -15,14 +17,10 @@ class GetPrestationCoffretAction {
 
     public function __invoke(Request $request, Response $response, array $args): Response {
         try {
-            $prestationId = $args['id'];
-            $coffretId = $args['coffret_id'];
-            $prestation = $this->catalogue->getPrestationById($prestationId);
+            $id = (int) $args['id'];
+            $categorie = $this->catalogue->getCategorieById($id);
             $view = Twig::fromRequest($request);
-            return $view->render($response, 'prestationsCoffret.twig', [
-                'prestation' => $prestation,
-                'coffret_id' => $coffretId
-            ]);
+            return $view->render($response, 'categorieParId.twig', ['categorie' => $categorie]);
         } catch (CatalogueException $e) {
             throw new HttpNotFoundException($request, $e->getMessage());
         }

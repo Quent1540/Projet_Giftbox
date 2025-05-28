@@ -1,10 +1,11 @@
 <?php
-namespace gift\appli\application_core\application\domain\useCases;
+namespace gift\appli\application_core\application\useCases;
 
-use gift\appli\application_core\application\domain\entities\Categorie;
-use gift\appli\application_core\application\domain\entities\Prestation;
-use gift\appli\application_core\application\domain\entities\Theme;
-use gift\appli\application_core\application\domain\entities\CoffretType;
+use gift\appli\application_core\application\exceptions\CatalogueException;
+use gift\appli\application_core\domain\entities\Categorie;
+use gift\appli\application_core\domain\entities\Prestation;
+use gift\appli\application_core\domain\entities\Theme;
+use gift\appli\application_core\domain\entities\CoffretType;
 use Illuminate\Database\QueryException;
 
 class Catalogue implements CatalogueInterface {

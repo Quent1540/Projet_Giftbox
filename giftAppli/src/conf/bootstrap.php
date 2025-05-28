@@ -18,14 +18,14 @@ $app = AppFactory::create();
 
 //Enregistrement du service Catalogue dans le conteneur DI
 $app->getContainer()->set(
-    \gift\appli\application_core\application\domain\useCases\CatalogueInterface::class,
+    \gift\appli\application_core\application\useCases\CatalogueInterface::class,
     function() {
-        return new \gift\appli\application_core\application\domain\useCases\Catalogue();
+        return new \gift\appli\application_core\application\useCases\Catalogue();
     }
 );
 
 //Twig
-$twig = \Slim\Views\Twig::create(__DIR__ . '/../application_core/application/views', [
+$twig = \Slim\Views\Twig::create(__DIR__ . '/../webui/views', [
     'cache' => false, //__DIR__ . '/../views/cache',
     'auto_reload' => true
 ]);
