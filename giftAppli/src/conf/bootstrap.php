@@ -34,7 +34,7 @@ $app->add(\Slim\Views\TwigMiddleware::create($app, $twig)) ;
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, true, true);
 
-// Enregistrement du service AuthnProvider dans le conteneur DI
+//Enregistrement du service AuthnProvider dans le conteneur DI
 $app->getContainer()->set(
     \gift\appli\webui\providers\AuthnProviderInterface::class,
     function($c) {
@@ -45,5 +45,7 @@ $app->getContainer()->set(
 
 //Chargement des routes
 $app = (require_once __DIR__ . '/routes.php')($app);
+//Chargement des routes API
+$app = (require_once __DIR__ . '/../api/routes.php')($app);
 
 return $app;
