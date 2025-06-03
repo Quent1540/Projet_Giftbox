@@ -22,5 +22,6 @@ return function(App $app): App {
     $app->map(['GET', 'POST'], '/box/create', \gift\appli\webui\actions\CreateBoxAction::class);
     $app->get('/coffret/{coffret_id}/prestation/{id}', \gift\appli\webui\actions\GetPrestationCoffretAction::class);
     $app->post('/box/prestation/add', \gift\appli\webui\actions\AddPrestationBoxAction::class);
+    $app->get('/box/courante', \gift\appli\webui\actions\GetBoxCouranteAction::class);
     return $app;
 };
