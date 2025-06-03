@@ -1,21 +1,22 @@
 {% extends "main.twig" %}
 
-{% block title %}Connexion{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block content %}
-    <h2>Connexion</h2>
+    <h2>Inscription</h2>
     {% if error %}
         <p style="color:red;">{{ error }}</p>
     {% endif %}
     {% if success %}
-        <p style="color:green;">Connexion réussie!</p>
+        <p style="color:green;">{{ success }}</p>
     {% endif %}
     <form method="POST" action="">
         <label>Email: <input type="email" name="email" required></label><br>
         <label>Mot de passe: <input type="password" name="password" required></label><br>
+        <label>Confirmer le mot de passe: <input type="password" name="password_confirm" required></label><br>
         <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-        <button type="submit">Se connecter</button>
+        <button type="submit">S'inscrire</button>
     </form>
-    <a href="/register">Pas de compte? S'inscrire</a><br>
-    <a href="/">Retour à la page d'accueil</a><br>
+    <a href="/signin">Déjà inscrit? Se connecter</a><br>
+    <a href="/">Retour à l'accueil</a>
 {% endblock %}

@@ -15,19 +15,30 @@ class RegisterAction {
 
     public function __invoke(Request $request, Response $response, $args) {
         $error = null;
-        $data = $request->getParsedBody();
-        $email = $data['email'] ?? '';
-        $password = $data['password'] ?? '';
-        if ($this->authProvider->signin($email, $password)) {
-            return $response
-                ->withHeader('Location', '/')
-                ->withStatus(302);
+        $success = null;
+        if ($request->getMethod() === 'POST') {
+            $data = $request->getParsedBody();
+            $email = $data['email'] ?? '';
+            $password = $data['password'] ?? '';
+            $password_confirm = $data['password_confirm'] ?? '';
+
+            if ($password !== $password_confirm) {
+                $error = "Les mots de passe ne correspondent pas.";
+            }
+            elseif (strlen($password)<8 || !preg_match('/[A-Z]/', $password)) {
+                $error = "Le mot de passe doit contenir au moins 8 caractères et une majuscule.";
+            }
+            elseif ($this->authProvider->register($email, $password)) {
+                $success = "Inscription réussie. Vous pouvez maintenant vous connecter.";
+            } else {
+                $error = "Cet email est déjà utilisé.";
+            }
         }
-            $error = "Identifiants invalides.";
         $user = $this->authProvider->getSignedInUser();
         $view = Twig::fromRequest($request);
-        return $view->render($response, 'signin.twig', [
+        return $view->render($response, 'register.twig', [
             'error' => $error,
+            'success' => $success,
             'user' => $user
         ]);
     }

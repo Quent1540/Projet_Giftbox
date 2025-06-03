@@ -5,14 +5,16 @@ use gift\appli\webui\actions\GetCategorieParIdAction;
 use gift\appli\webui\actions\GetCategoriesAction;
 use gift\appli\webui\actions\GetPrestationParIdAction;
 use gift\appli\webui\actions\GetPrestationsParCategorieAction;
+use gift\appli\webui\actions\RegisterAction;
 use gift\appli\webui\actions\SignoutAction;
 use Slim\App;
 use gift\appli\webui\actions\SigninAction;
 
 return function(App $app): App {
     $app->get('/categories', GetCategoriesAction::class);
-    $app->post('/signin', SigninAction::class);
+    $app->map(['GET','POST'], '/signin', SigninAction::class);
     $app->post('/signout', SignoutAction::class);
+    $app->map(['GET','POST'], '/register', RegisterAction::class);
     $app->get('/categorie/{id}', GetCategorieParIdAction::class);
     $app->get('/prestations', \gift\appli\webui\actions\GetPrestationsAction::class);
     $app->get('/prestation/{id}', GetPrestationParIdAction::class);

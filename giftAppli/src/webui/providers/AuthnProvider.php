@@ -27,4 +27,8 @@ class AuthnProvider implements AuthnProviderInterface {
             return false;
         }
     }
+
+    public function register(string $email, string $password): bool {
+        return $this->authnService->register($email, $password);
+    }
 }
