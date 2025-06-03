@@ -16,10 +16,35 @@
                 "nav main"
                 "footer footer";
         }
-        header { grid-area: header; background: #eee; padding: 1em; }
+        header { grid-area: header; background: #eee; padding: 1em; font-family:'Segoe UI'}
         nav { grid-area: nav; background: #ddd; padding: 1em; }
         main { grid-area: main; padding: 1em; }
         footer { grid-area: footer; background: #eee; text-align: center; padding: 1em; }
+        main {
+            grid-area: main;
+            padding: 2em;
+            background: #fafbfc;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(60, 60, 60, 0.06);
+            margin: 2em 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #222;
+            min-height: 60vh;
+        }
+
+        main h1, main h2, main h3 {
+            color: #2d3a4a;
+            margin-top: 0;
+        }
+
+        main a {
+            color: #3a6ea5;
+            text-decoration: underline;
+        }
+
+        main a:hover {
+            color: #27496d;
+        }
     </style>
 </head>
 <body>
