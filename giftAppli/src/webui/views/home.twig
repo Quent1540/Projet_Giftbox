@@ -8,7 +8,17 @@
         Cette application vous permet de découvrir et de gérer des catégories de prestations.<br>
         Parcourez les différentes catégories et trouvez la prestation qui vous convient !
         <br><br>
-        <a href ="/categories">Accéder aux catégories</a>
+        {% if user %}
+            <form action="/signout" method="post" style="display:inline;">
+                <button type="submit">Se déconnecter</button>
+            </form>
+        {% else %}
+            <form action="/signin" method="post" style="display:inline;">
+                    <button type="submit">Se connecter</button>
+                </form>
+        {% endif %}
+        <br>
+        <a href="/categories">Accéder aux catégories</a>
         <br>
         <a href="/prestations">Accéder aux prestations</a>
         <br>

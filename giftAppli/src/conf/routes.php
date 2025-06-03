@@ -5,18 +5,27 @@ use gift\appli\webui\actions\GetCategorieParIdAction;
 use gift\appli\webui\actions\GetCategoriesAction;
 use gift\appli\webui\actions\GetPrestationParIdAction;
 use gift\appli\webui\actions\GetPrestationsParCategorieAction;
+use gift\appli\webui\actions\SignoutAction;
 use Slim\App;
+use gift\appli\webui\actions\SigninAction;
 
 return function(App $app): App {
     $app->get('/categories', GetCategoriesAction::class);
+    $app->post('/signin', SigninAction::class);
+    $app->post('/signout', SignoutAction::class);
     $app->get('/categorie/{id}', GetCategorieParIdAction::class);
     $app->get('/prestations', \gift\appli\webui\actions\GetPrestationsAction::class);
     $app->get('/prestation/{id}', GetPrestationParIdAction::class);
     $app->get('/categories/{id}/prestations', GetPrestationsParCategorieAction::class);
-    $app->get('/', function ($request, $response, $args) {
+    $app->get('/', function ($request, $response, $args) use ($app) {
+        $container = $app->getContainer();
+        $authProvider = $container->get(\gift\appli\webui\providers\AuthnProviderInterface::class);
+        $user = $authProvider->getSignedInUser();
         $view = \Slim\Views\Twig::fromRequest($request);
-        return $view->render($response, 'home.twig');
-    });
+        return $view->render($response, 'home.twig', [
+         'user' => $user
+        ]);
+});
     $app->get('/coffrets', \gift\appli\webui\actions\GetCoffretsAction::class);
     $app->get('/coffret/{id}', \gift\appli\webui\actions\GetCoffretDetailAction::class);
     $app->map(['GET', 'POST'], '/box/create', \gift\appli\webui\actions\CreateBoxAction::class);
