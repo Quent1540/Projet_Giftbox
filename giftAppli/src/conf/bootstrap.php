@@ -43,6 +43,14 @@ $app->getContainer()->set(
     }
 );
 
+//Enregistrement du service AuthnService dans le conteneur DI
+$app->getContainer()->set(
+    \gift\appli\application_core\application\useCases\AuthnServiceInterface::class,
+    function() {
+        return new \gift\appli\application_core\application\useCases\AuthnService();
+    }
+);
+
 //Chargement des routes
 $app = (require_once __DIR__ . '/routes.php')($app);
 //Chargement des routes API

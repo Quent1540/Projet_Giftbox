@@ -1,7 +1,6 @@
 {% extends "main.twig" %}
 
 {% block title %}Accueil{% endblock %}
-
 {% block content %}
     <h1>Bienvenue sur Gift Appli</h1>
     <p>
@@ -10,14 +9,14 @@
         <br><br>
         {% if user %}
             <form action="/signout" method="post" style="display:inline;">
-                <button type="submit">Se déconnecter</button>
+                <button class="button-modern" type="submit">Se déconnecter</button>
             </form>
         {% else %}
             <form action="/signin" method="get" style="display:inline;">
-                    <button type="submit">Se connecter</button>
+                    <button class="button-modern" type="submit">Se connecter</button-modern>
                 </form>
             <form action="/register" method="get" style="display:inline;">
-                                <button type="submit">S'inscrire</button>
+                                <button class="button-modern" type="submit">S'inscrire</button>
                             </form>
         {% endif %}
         <br>
