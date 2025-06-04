@@ -49,6 +49,13 @@ $app->getContainer()->set(
     function() {
         return new \gift\appli\application_core\application\useCases\AuthnService();
     }
+    );
+//Enregistrement du service Box dans le conteneur DI
+$app->getContainer()->set(
+    \gift\appli\application_core\application\useCases\BoxInterface::class,
+    function() {
+        return new \gift\appli\application_core\application\useCases\Box();
+    }
 );
 
 //Chargement des routes
