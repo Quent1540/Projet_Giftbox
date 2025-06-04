@@ -1,13 +1,19 @@
 <?php
-//Action pour afficher la box courante en session
 namespace gift\appli\webui\actions;
 
 use gift\appli\webui\providers\CsrfTokenProvider;
+use gift\appli\application_core\application\useCases\BoxInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 
 class GetBoxCouranteAction {
+    protected BoxInterface $boxService;
+
+    public function __construct(BoxInterface $boxService) {
+        $this->boxService = $boxService;
+    }
+
     public function __invoke(Request $request, Response $response, $args)
     {
         $view = Twig::fromRequest($request);
@@ -15,18 +21,23 @@ class GetBoxCouranteAction {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-        //ID de la box en session
         $box_id = $_SESSION['box_id'] ?? null;
 
-        //Erreur
         if (!$box_id) {
             $response->getBody()->write('Aucune box en courante');
             return $response->withStatus(404);
         }
 
-        //Affichage de la box courante
+        // Exemple de récupération de la box courante (à adapter selon ta logique)
+        $box = [
+            'prestations' => $this->boxService->getPrestationsByCoffret($box_id),
+            'total' => 0, // Calcule le total ici si besoin
+            'etat' => 'En cours', // Ou autre état selon ta logique
+        ];
+        $box['total'] = array_sum(array_column($box['prestations'], 'tarif'));
+
         return $view->render($response, 'boxCourante.twig', [
-            'box_id' => $box_id,
+            'box' => $box,
             'csrf_token' => CsrfTokenProvider::generate()
         ]);
     }

@@ -27,7 +27,7 @@ class Box implements BoxInterface {
         }
     }
 
-    public function getPrestationsByCoffret(int $id): array {
+    public function getPrestationsByCoffret(string $id): array {
         try {
             return Prestation::join('coffret2presta', 'prestation.id', '=', 'coffret2presta.presta_id')
                 ->where('coffret2presta.coffret_id', $id)
@@ -43,6 +43,17 @@ class Box implements BoxInterface {
             return Prestation::findOrFail($id)->toArray();
         } catch (\Exception $e) {
             throw new BoxException('Prestation introuvable');
+        }
+    }
+
+    public function getPrestationsByBox(string $id): array {
+        try {
+            return Prestation::join('box2presta', 'prestation.id', '=', 'box2presta.presta_id')
+                ->where('box2presta.box_id', $id)
+                ->get(['prestation.id', 'prestation.libelle', 'prestation.tarif'])
+                ->toArray();
+        } catch (\Exception $e) {
+            throw new BoxException('Erreur lors de la récupération des prestations : ' . $e->getMessage());
         }
     }
 }
