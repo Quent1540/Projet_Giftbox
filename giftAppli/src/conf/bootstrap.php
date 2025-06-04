@@ -43,6 +43,14 @@ $app->getContainer()->set(
     }
 );
 
+//Enregistrement du service Box dans le conteneur DI
+$app->getContainer()->set(
+    \gift\appli\application_core\application\useCases\BoxInterface::class,
+    function() {
+        return new \gift\appli\application_core\application\useCases\Box();
+    }
+);
+
 //Chargement des routes
 $app = (require_once __DIR__ . '/routes.php')($app);
 //Chargement des routes API
