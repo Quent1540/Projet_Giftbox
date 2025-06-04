@@ -28,11 +28,9 @@ class GetBoxCouranteAction {
             return $response->withStatus(404);
         }
 
-        // Exemple de récupération de la box courante (à adapter selon ta logique)
         $box = [
-            'prestations' => $this->boxService->getPrestationsByCoffret($box_id),
-            'total' => 0, // Calcule le total ici si besoin
-            'etat' => 'En cours', // Ou autre état selon ta logique
+            'prestations' => $this->boxService->getPrestationsByBox($box_id),
+            'total' => 0,
         ];
         $box['total'] = array_sum(array_column($box['prestations'], 'tarif'));
 
